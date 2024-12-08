@@ -1,0 +1,5 @@
+.idea
+db.sqlite3
+poetry.lock
+.DS_Store
+__pycache__
