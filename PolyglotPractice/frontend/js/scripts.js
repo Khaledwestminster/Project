@@ -1,48 +1,93 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const courseList = document.getElementById('course-list');
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('signup-form');
+    const fullNameInput = document.getElementById('full-name');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const errorContainer = document.getElementById('error-messages');
+    const userProfile = document.getElementById('user-profile');
+    const profileMenu = document.getElementById('profile-menu');
+    const userAvatar = document.getElementById('user-avatar');
+    const userName = document.getElementById('user-name');
 
-    // Sample data for courses (replace with backend data later)
-    const courses = [
-        { title: "Beginner's Spanish", description: "Learn the basics of Spanish.", button: "Start" },
-        { title: "Intermediate French", description: "Improve your French skills.", button: "Start" },
-        { title: "Advanced German", description: "Master the German language.", button: "Start" }
-    ];
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+        let isValid = true;
+        let messages = [];
 
-    // Populate courses dynamically
-    courses.forEach(course => {
-        const courseCard = document.createElement('div');
-        courseCard.className = 'course-card';
-        courseCard.innerHTML = `
-            <h3>${course.title}</h3>
-            <p>${course.description}</p>
-            <button>${course.button}</button>
-        `;
-        courseList.appendChild(courseCard);
+        // Validate Full Name
+        if (fullNameInput.value.trim() === '') {
+            isValid = false;
+            messages.push('Full Name is required.');
+            fullNameInput.classList.add('error');
+        } else {
+            fullNameInput.classList.remove('error');
+        }
+
+        // Validate Email
+        if (emailInput.value.trim() === '') {
+            isValid = false;
+            messages.push('Email Address is required.');
+            emailInput.classList.add('error');
+        } else if (!validateEmail(emailInput.value.trim())) {
+            isValid = false;
+            messages.push('Please enter a valid Email Address.');
+            emailInput.classList.add('error');
+        } else {
+            emailInput.classList.remove('error');
+        }
+
+        // Validate Password
+        if (passwordInput.value.trim() === '') {
+            isValid = false;
+            messages.push('Password is required.');
+            passwordInput.classList.add('error');
+        } else if (passwordInput.value.trim().length < 8) {
+            isValid = false;
+            messages.push('Password must be at least 8 characters long.');
+            passwordInput.classList.add('error');
+        } else {
+            passwordInput.classList.remove('error');
+        }
+
+        if (isValid) {
+            // Simulate user sign-up and store session
+            localStorage.setItem('user', JSON.stringify({ name: fullNameInput.value, avatar: 'default-avatar.png' }));
+            alert('Sign-up successful! Redirecting to courses page.');
+            window.location.href = 'courses.html';
+        } else {
+            displayErrorMessages(messages);
+        }
     });
 
-    // Example: Add click event for "Start Learning" button
-    const startButton = document.getElementById('start-learning');
-    startButton.addEventListener('click', () => {
-        alert('Redirecting you to courses!');
-    });
- const navLinks = document.querySelectorAll('nav ul li a');
-
-    // Function to handle link click
-    function handleNavClick(event) {
-        // Remove 'active' class from all links
-        navLinks.forEach(link => link.classList.remove('active'));
-
-        // Add 'active' class to the clicked link
-        event.target.classList.add('active');
-
-        // Example action command: Log the selected link
-        console.log(`You clicked on ${event.target.textContent}`);
-        alert(`Navigating to ${event.target.textContent}`);
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 
-    // Add click event listener to each navigation link
-    navLinks.forEach(link => {
-        link.addEventListener('click', handleNavClick);
-    });
+    function displayErrorMessages(messages) {
+        errorContainer.innerHTML = '';
+        messages.forEach(message => {
+            const p = document.createElement('p');
+            p.textContent = message;
+            errorContainer.appendChild(p);
+        });
+        errorContainer.style.display = 'block';
+    }
 
+    // Check if user is logged in and display profile
+    function checkUserSession() {
+        const userData = JSON.parse(localStorage.getItem('user'));
+        if (userData) {
+            userName.textContent = userData.name;
+            userAvatar.src = userData.avatar;
+            userProfile.classList.remove('hidden');
+        }
+    }
+
+    checkUserSession();
+
+    userProfile.addEventListener('click', function () {
+        profileMenu.classList.toggle('hidden');
+    });
 });
+

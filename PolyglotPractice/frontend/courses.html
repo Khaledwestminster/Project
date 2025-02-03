@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Polyglot Practice</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/courses.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Polyglot Practice</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="courses.html" class="active">Courses</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+        <div id="user-profile" class="hidden">
+            <img src="default-avatar.png" alt="User Avatar" id="user-avatar">
+            <span id="user-name">Username</span>
+            <div id="profile-menu" class="hidden">
+                <ul>
+                    <li><a href="profile.html">View Profile</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section id="courses-section">
+    <h2>Explore Our Language Courses</h2>
+    <p>Search for courses by language or skill level:</p>
+    <div id="search-bar">
+        <input type="text" id="search-input" placeholder="Search by language (e.g., Spanish, French)">
+        <select id="skill-level">
+            <option value="">All Levels</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </select>
+        <button id="search-button">Search</button>
+    </div>
+    <div id="course-list">
+        <!-- JavaScript will populate this dynamically -->
+    </div>
+</section>
+
+    </main>
+    <footer>
+        <p>&copy; 2025 Polyglot Practice. All rights reserved.</p>
+    </footer>
+</body>
+</html>
