@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (loginForm) {
         loginForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
             let isValid = true;
             let messages = [];
 
-            // Validate Email
+
             if (loginEmail.value.trim() === '') {
                 isValid = false;
                 messages.push('Email Address is required.');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 loginEmail.classList.remove('error');
             }
 
-            // Validate Password
+
             if (loginPassword.value.trim() === '') {
                 isValid = false;
                 messages.push('Password is required.');
@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             if (isValid) {
-                // Simulate login authentication (Replace with real authentication in backend)
                 const user = JSON.parse(localStorage.getItem('user'));
                 if (user && user.email === loginEmail.value) {
                     alert('Login successful! Redirecting to courses page.');
@@ -58,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
         loginErrorContainer.style.display = 'block';
     }
 
-    // Check if user is logged in and display profile
     function checkUserSession() {
         const userData = JSON.parse(localStorage.getItem('user'));
         if (userData) {

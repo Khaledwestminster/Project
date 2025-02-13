@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const skillLevel = document.getElementById('skill-level');
     const searchButton = document.getElementById('search-button');
 
-    // Sample courses
+
     const courses = [
         { title: "Beginner's Spanish", description: "Learn basic greetings, numbers, and simple sentences.", level: "Beginner", id: "spanish-beginner" },
         { title: "Intermediate Spanish", description: "Expand your vocabulary and learn more complex grammar.", level: "Intermediate", id: "spanish-intermediate" },
@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
         { title: "Advanced Italian", description: "Become proficient in Italian with complex structures and expressions.", level: "Advanced", id: "italian-advanced" }
     ];
 
-    // Initially hide the course list
+
     courseList.style.display = "none";
 
-    // Function to display courses
+
     function displayCourses(filteredCourses) {
-        courseList.innerHTML = ""; // Clear the current course list
+        courseList.innerHTML = "";
 
         if (filteredCourses.length === 0) {
             courseList.innerHTML = "<p>No courses found. Please adjust your search criteria.</p>";
@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
             courseList.appendChild(courseCard);
         });
 
-        courseList.style.display = "flex"; // Show the course list in flex layout
+        courseList.style.display = "flex";
     }
 
-    // Function to search courses
+
     function searchCourses() {
         const searchQuery = searchInput.value.toLowerCase();
         const selectedLevel = skillLevel.value;
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
         displayCourses(filteredCourses);
     }
 
-    // Add event listener to the search button
+
     searchButton.addEventListener('click', searchCourses);
 
-    // Function to handle starting a course
+
     function startCourse(courseId) {
         alert(`Starting ${courseId.replace("-", " ")} course!`);
         window.location.href = `course-details.html?course=${courseId}`;

@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const userName = document.getElementById('user-name');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
         let isValid = true;
         let messages = [];
 
-        // Validate Full Name
+
         if (fullNameInput.value.trim() === '') {
             isValid = false;
             messages.push('Full Name is required.');
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fullNameInput.classList.remove('error');
         }
 
-        // Validate Email
+
         if (emailInput.value.trim() === '') {
             isValid = false;
             messages.push('Email Address is required.');
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailInput.classList.remove('error');
         }
 
-        // Validate Password
+
         if (passwordInput.value.trim() === '') {
             isValid = false;
             messages.push('Password is required.');
@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (isValid) {
-            // Simulate user sign-up and store session
             localStorage.setItem('user', JSON.stringify({ name: fullNameInput.value, avatar: 'default-avatar.png' }));
             alert('Sign-up successful! Redirecting to courses page.');
             window.location.href = 'courses.html';
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         errorContainer.style.display = 'block';
     }
 
-    // Check if user is logged in and display profile
+
     function checkUserSession() {
         const userData = JSON.parse(localStorage.getItem('user'));
         if (userData) {
