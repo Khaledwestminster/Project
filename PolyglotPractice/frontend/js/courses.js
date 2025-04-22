@@ -65,9 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayCourses(filteredCourses);
     }
 
-
     searchButton.addEventListener('click', searchCourses);
-
 
     function startCourse(courseId) {
         alert(`Starting ${courseId.replace("-", " ")} course!`);
